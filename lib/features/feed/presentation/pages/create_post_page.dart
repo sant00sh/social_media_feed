@@ -1,7 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_media_feed/core/constants/string_constants.dart';
+import '../cubit/feed/feed_cubit.dart';
 
 class CreatePostPage extends StatefulWidget {
   const CreatePostPage({super.key});
@@ -11,44 +11,63 @@ class CreatePostPage extends StatefulWidget {
 }
 
 class CreatePostPageState extends State<CreatePostPage> {
-  final TextEditingController _postController = TextEditingController();
-  XFile? _image;
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _bodyController = TextEditingController();
 
-  Future<void> _pickImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      _image = pickedFile;
-    });
+  void _onSubmitPost() {
+    final title = _titleController.text.trim();
+    final body = _bodyController.text.trim();
+    if (title.isNotEmpty && body.isNotEmpty) {
+      context.read<FeedCubit>().createPost(title, body);
+      Navigator.of(context).pop();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Create Post')),
+      appBar: AppBar(
+        title: const Text(StringConstants.createPost),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
-              controller: _postController,
-              decoration: const InputDecoration(labelText: 'Post Content'),
-            ),
+            _titleTextField(),
             const SizedBox(height: 10),
-            if (_image != null) Image.file(File(_image!.path), height: 200),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: _pickImage,
-              child: const Text('Pick Image'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Submit'),
-            ),
+            _contentTextField(),
+            const SizedBox(height: 30),
+            _submitPostButton(),
           ],
         ),
       ),
     );
   }
+
+  Widget _titleTextField() => TextField(
+        controller: _titleController,
+        decoration: InputDecoration(
+          labelText: StringConstants.postTitle,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
+
+  Widget _contentTextField() => TextField(
+        controller: _bodyController,
+        decoration: InputDecoration(
+          labelText: StringConstants.postContent,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        maxLines: 3,
+      );
+
+  Widget _submitPostButton() => ElevatedButton(
+        onPressed: _onSubmitPost,
+        child: const Text(StringConstants.submitPost),
+      );
 }

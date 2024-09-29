@@ -1,5 +1,5 @@
 name: social_media_feed
-description: "Social Media Feed"
+description: "Social Feed"
 
 publish_to: 'none'
 
@@ -20,13 +20,10 @@ dependencies:
   freezed_annotation: ^2.4.4 # For code generation
   flutter_bloc: ^8.1.6 # State management with bloc & cubit
   equatable: ^2.0.5 # For value equality in entities and state
-  cached_network_image: ^3.4.1 # For loading images efficiently
-  image_picker: ^1.1.2 # For picking images from the gallery/camera
-  intl: ^0.19.0 # Date formatting
   dartz: ^0.10.1 # Error handling
   get_it: ^8.0.0 # Service locator
   hive_flutter: ^1.1.0 # Local storage
-  path_provider: ^2.1.4 # For getting storage paths
+  timeago: ^3.7.0 # For date time
 
 
 dev_dependencies:

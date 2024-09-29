@@ -13,10 +13,14 @@ class FeedModel with _$FeedModel {
     @HiveField(1) required String title,
     @HiveField(2) required String body,
     @HiveField(3) required int userId,
-    @HiveField(4) String? userImage,
-    @HiveField(5) String? feedImage,
-    @HiveField(6) bool? isLike,
-    @HiveField(7) List<CommentModel>? comments,
+    @HiveField(4) String? userName,
+    @HiveField(5) String? userEmail,
+    @HiveField(6) String? userImage,
+    @HiveField(7) String? feedImage,
+    @HiveField(8) bool? isLike,
+    @HiveField(9) List<CommentModel>? comments,
+    @HiveField(10) int? likesCount,
+    @HiveField(11) DateTime? postedDate,
   }) = _FeedModel;
 
   factory FeedModel.fromJson(Map<String, dynamic> json) => _$FeedModelFromJson(json);

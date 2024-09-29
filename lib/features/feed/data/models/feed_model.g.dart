@@ -21,17 +21,21 @@ class FeedModelAdapter extends TypeAdapter<FeedModel> {
       title: fields[1] as String,
       body: fields[2] as String,
       userId: fields[3] as int,
-      userImage: fields[4] as String?,
-      feedImage: fields[5] as String?,
-      isLike: fields[6] as bool?,
-      comments: (fields[7] as List?)?.cast<CommentModel>(),
+      userName: fields[4] as String?,
+      userEmail: fields[5] as String?,
+      userImage: fields[6] as String?,
+      feedImage: fields[7] as String?,
+      isLike: fields[8] as bool?,
+      comments: (fields[9] as List?)?.cast<CommentModel>(),
+      likesCount: fields[10] as int?,
+      postedDate: fields[11] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, FeedModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,13 +45,21 @@ class FeedModelAdapter extends TypeAdapter<FeedModel> {
       ..writeByte(3)
       ..write(obj.userId)
       ..writeByte(4)
-      ..write(obj.userImage)
+      ..write(obj.userName)
       ..writeByte(5)
-      ..write(obj.feedImage)
+      ..write(obj.userEmail)
       ..writeByte(6)
-      ..write(obj.isLike)
+      ..write(obj.userImage)
       ..writeByte(7)
-      ..write(obj.comments);
+      ..write(obj.feedImage)
+      ..writeByte(8)
+      ..write(obj.isLike)
+      ..writeByte(9)
+      ..write(obj.comments)
+      ..writeByte(10)
+      ..write(obj.likesCount)
+      ..writeByte(11)
+      ..write(obj.postedDate);
   }
 
   @override
@@ -71,12 +83,18 @@ _$FeedModelImpl _$$FeedModelImplFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       body: json['body'] as String,
       userId: (json['userId'] as num).toInt(),
+      userName: json['userName'] as String?,
+      userEmail: json['userEmail'] as String?,
       userImage: json['userImage'] as String?,
       feedImage: json['feedImage'] as String?,
       isLike: json['isLike'] as bool?,
       comments: (json['comments'] as List<dynamic>?)
           ?.map((e) => CommentModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      likesCount: (json['likesCount'] as num?)?.toInt(),
+      postedDate: json['postedDate'] == null
+          ? null
+          : DateTime.parse(json['postedDate'] as String),
     );
 
 Map<String, dynamic> _$$FeedModelImplToJson(_$FeedModelImpl instance) =>
@@ -85,8 +103,12 @@ Map<String, dynamic> _$$FeedModelImplToJson(_$FeedModelImpl instance) =>
       'title': instance.title,
       'body': instance.body,
       'userId': instance.userId,
+      'userName': instance.userName,
+      'userEmail': instance.userEmail,
       'userImage': instance.userImage,
       'feedImage': instance.feedImage,
       'isLike': instance.isLike,
       'comments': instance.comments,
+      'likesCount': instance.likesCount,
+      'postedDate': instance.postedDate?.toIso8601String(),
     };

@@ -1,7 +1,7 @@
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
+import 'package:social_media_feed/features/feed/data/models/user_model.dart';
 
-import '../models/comment_model.dart';
 import '../models/feed_model.dart';
 
 part 'feed_remote_data_source.g.dart';
@@ -18,16 +18,9 @@ abstract class FeedRemoteDataSource {
     @Query("_limit") int limit = 10,
   });
 
-  //
-  @POST("/posts/{postId}/like")
-  Future<void> likePost(@Path("postId") int postId);
+  @POST("/posts")
+  Future<FeedModel> createPost(@Body() Map<String, dynamic> post);
 
-  // Add a comment to a post
-  @POST("/posts/{postId}/comments")
-  Future<void> commentOnPost(
-      @Path("postId") int postId, @Body() CommentModel comment);
-
-  // Fetch comments for a post
-  @GET("/posts/{postId}/comments")
-  Future<List<CommentModel>> getComments(@Path("postId") int postId);
+  @GET("/users/{userId}")
+  Future<UserModel> getUserDetails(@Path("userId") int userId);
 }

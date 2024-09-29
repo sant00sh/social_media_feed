@@ -10,15 +10,24 @@ abstract class FeedState extends Equatable {
 
 class FeedInitial extends FeedState {}
 
-class FeedLoading extends FeedState {}
+class FeedLoading extends FeedState {
+  final List<FeedModel> currentPosts;
+  final bool isFirstLoad;
+
+  const FeedLoading(this.currentPosts, {this.isFirstLoad = false});
+
+  @override
+  List<Object?> get props => [currentPosts, isFirstLoad];
+}
 
 class FeedLoaded extends FeedState {
   final List<FeedModel> posts;
+  final bool hasReachedMax;
 
-  const FeedLoaded(this.posts);
+  const FeedLoaded(this.posts, {this.hasReachedMax = false});
 
   @override
-  List<Object?> get props => [posts];
+  List<Object?> get props => [posts, hasReachedMax];
 }
 
 class FeedError extends FeedState {
@@ -31,19 +40,31 @@ class FeedError extends FeedState {
 }
 
 class PostLiked extends FeedState {
-  final int postId;
+  final FeedModel post;
 
-  const PostLiked(this.postId);
+  const PostLiked(this.post);
 
   @override
-  List<Object?> get props => [postId];
+  List<Object?> get props => [post];
 }
 
 class CommentAdded extends FeedState {
-  final int postId;
+  final FeedModel post;
 
-  const CommentAdded(this.postId);
+  const CommentAdded(this.post);
 
   @override
-  List<Object?> get props => [postId];
+  List<Object?> get props => [post];
+}
+
+class LikeAnimationState extends FeedState {
+  final double scale;
+
+  const LikeAnimationState({required this.scale});
+
+  LikeAnimationState copyWith({bool? isLiked, double? scale}) {
+    return LikeAnimationState(
+      scale: scale ?? this.scale,
+    );
+  }
 }

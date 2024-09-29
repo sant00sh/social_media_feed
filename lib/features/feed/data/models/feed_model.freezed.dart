@@ -29,13 +29,21 @@ mixin _$FeedModel {
   @HiveField(3)
   int get userId => throw _privateConstructorUsedError;
   @HiveField(4)
-  String? get userImage => throw _privateConstructorUsedError;
+  String? get userName => throw _privateConstructorUsedError;
   @HiveField(5)
-  String? get feedImage => throw _privateConstructorUsedError;
+  String? get userEmail => throw _privateConstructorUsedError;
   @HiveField(6)
-  bool? get isLike => throw _privateConstructorUsedError;
+  String? get userImage => throw _privateConstructorUsedError;
   @HiveField(7)
+  String? get feedImage => throw _privateConstructorUsedError;
+  @HiveField(8)
+  bool? get isLike => throw _privateConstructorUsedError;
+  @HiveField(9)
   List<CommentModel>? get comments => throw _privateConstructorUsedError;
+  @HiveField(10)
+  int? get likesCount => throw _privateConstructorUsedError;
+  @HiveField(11)
+  DateTime? get postedDate => throw _privateConstructorUsedError;
 
   /// Serializes this FeedModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,10 +65,14 @@ abstract class $FeedModelCopyWith<$Res> {
       @HiveField(1) String title,
       @HiveField(2) String body,
       @HiveField(3) int userId,
-      @HiveField(4) String? userImage,
-      @HiveField(5) String? feedImage,
-      @HiveField(6) bool? isLike,
-      @HiveField(7) List<CommentModel>? comments});
+      @HiveField(4) String? userName,
+      @HiveField(5) String? userEmail,
+      @HiveField(6) String? userImage,
+      @HiveField(7) String? feedImage,
+      @HiveField(8) bool? isLike,
+      @HiveField(9) List<CommentModel>? comments,
+      @HiveField(10) int? likesCount,
+      @HiveField(11) DateTime? postedDate});
 }
 
 /// @nodoc
@@ -82,10 +94,14 @@ class _$FeedModelCopyWithImpl<$Res, $Val extends FeedModel>
     Object? title = null,
     Object? body = null,
     Object? userId = null,
+    Object? userName = freezed,
+    Object? userEmail = freezed,
     Object? userImage = freezed,
     Object? feedImage = freezed,
     Object? isLike = freezed,
     Object? comments = freezed,
+    Object? likesCount = freezed,
+    Object? postedDate = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -104,6 +120,14 @@ class _$FeedModelCopyWithImpl<$Res, $Val extends FeedModel>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userEmail: freezed == userEmail
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
       userImage: freezed == userImage
           ? _value.userImage
           : userImage // ignore: cast_nullable_to_non_nullable
@@ -120,6 +144,14 @@ class _$FeedModelCopyWithImpl<$Res, $Val extends FeedModel>
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
               as List<CommentModel>?,
+      likesCount: freezed == likesCount
+          ? _value.likesCount
+          : likesCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      postedDate: freezed == postedDate
+          ? _value.postedDate
+          : postedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -137,10 +169,14 @@ abstract class _$$FeedModelImplCopyWith<$Res>
       @HiveField(1) String title,
       @HiveField(2) String body,
       @HiveField(3) int userId,
-      @HiveField(4) String? userImage,
-      @HiveField(5) String? feedImage,
-      @HiveField(6) bool? isLike,
-      @HiveField(7) List<CommentModel>? comments});
+      @HiveField(4) String? userName,
+      @HiveField(5) String? userEmail,
+      @HiveField(6) String? userImage,
+      @HiveField(7) String? feedImage,
+      @HiveField(8) bool? isLike,
+      @HiveField(9) List<CommentModel>? comments,
+      @HiveField(10) int? likesCount,
+      @HiveField(11) DateTime? postedDate});
 }
 
 /// @nodoc
@@ -160,10 +196,14 @@ class __$$FeedModelImplCopyWithImpl<$Res>
     Object? title = null,
     Object? body = null,
     Object? userId = null,
+    Object? userName = freezed,
+    Object? userEmail = freezed,
     Object? userImage = freezed,
     Object? feedImage = freezed,
     Object? isLike = freezed,
     Object? comments = freezed,
+    Object? likesCount = freezed,
+    Object? postedDate = freezed,
   }) {
     return _then(_$FeedModelImpl(
       id: null == id
@@ -182,6 +222,14 @@ class __$$FeedModelImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userEmail: freezed == userEmail
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
       userImage: freezed == userImage
           ? _value.userImage
           : userImage // ignore: cast_nullable_to_non_nullable
@@ -198,6 +246,14 @@ class __$$FeedModelImplCopyWithImpl<$Res>
           ? _value._comments
           : comments // ignore: cast_nullable_to_non_nullable
               as List<CommentModel>?,
+      likesCount: freezed == likesCount
+          ? _value.likesCount
+          : likesCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      postedDate: freezed == postedDate
+          ? _value.postedDate
+          : postedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -210,10 +266,14 @@ class _$FeedModelImpl implements _FeedModel {
       @HiveField(1) required this.title,
       @HiveField(2) required this.body,
       @HiveField(3) required this.userId,
-      @HiveField(4) this.userImage,
-      @HiveField(5) this.feedImage,
-      @HiveField(6) this.isLike,
-      @HiveField(7) final List<CommentModel>? comments})
+      @HiveField(4) this.userName,
+      @HiveField(5) this.userEmail,
+      @HiveField(6) this.userImage,
+      @HiveField(7) this.feedImage,
+      @HiveField(8) this.isLike,
+      @HiveField(9) final List<CommentModel>? comments,
+      @HiveField(10) this.likesCount,
+      @HiveField(11) this.postedDate})
       : _comments = comments;
 
   factory _$FeedModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -233,16 +293,22 @@ class _$FeedModelImpl implements _FeedModel {
   final int userId;
   @override
   @HiveField(4)
-  final String? userImage;
+  final String? userName;
   @override
   @HiveField(5)
-  final String? feedImage;
+  final String? userEmail;
   @override
   @HiveField(6)
+  final String? userImage;
+  @override
+  @HiveField(7)
+  final String? feedImage;
+  @override
+  @HiveField(8)
   final bool? isLike;
   final List<CommentModel>? _comments;
   @override
-  @HiveField(7)
+  @HiveField(9)
   List<CommentModel>? get comments {
     final value = _comments;
     if (value == null) return null;
@@ -252,8 +318,15 @@ class _$FeedModelImpl implements _FeedModel {
   }
 
   @override
+  @HiveField(10)
+  final int? likesCount;
+  @override
+  @HiveField(11)
+  final DateTime? postedDate;
+
+  @override
   String toString() {
-    return 'FeedModel(id: $id, title: $title, body: $body, userId: $userId, userImage: $userImage, feedImage: $feedImage, isLike: $isLike, comments: $comments)';
+    return 'FeedModel(id: $id, title: $title, body: $body, userId: $userId, userName: $userName, userEmail: $userEmail, userImage: $userImage, feedImage: $feedImage, isLike: $isLike, comments: $comments, likesCount: $likesCount, postedDate: $postedDate)';
   }
 
   @override
@@ -265,12 +338,20 @@ class _$FeedModelImpl implements _FeedModel {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.body, body) || other.body == body) &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.userEmail, userEmail) ||
+                other.userEmail == userEmail) &&
             (identical(other.userImage, userImage) ||
                 other.userImage == userImage) &&
             (identical(other.feedImage, feedImage) ||
                 other.feedImage == feedImage) &&
             (identical(other.isLike, isLike) || other.isLike == isLike) &&
-            const DeepCollectionEquality().equals(other._comments, _comments));
+            const DeepCollectionEquality().equals(other._comments, _comments) &&
+            (identical(other.likesCount, likesCount) ||
+                other.likesCount == likesCount) &&
+            (identical(other.postedDate, postedDate) ||
+                other.postedDate == postedDate));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -281,10 +362,14 @@ class _$FeedModelImpl implements _FeedModel {
       title,
       body,
       userId,
+      userName,
+      userEmail,
       userImage,
       feedImage,
       isLike,
-      const DeepCollectionEquality().hash(_comments));
+      const DeepCollectionEquality().hash(_comments),
+      likesCount,
+      postedDate);
 
   /// Create a copy of FeedModel
   /// with the given fields replaced by the non-null parameter values.
@@ -308,10 +393,14 @@ abstract class _FeedModel implements FeedModel {
       @HiveField(1) required final String title,
       @HiveField(2) required final String body,
       @HiveField(3) required final int userId,
-      @HiveField(4) final String? userImage,
-      @HiveField(5) final String? feedImage,
-      @HiveField(6) final bool? isLike,
-      @HiveField(7) final List<CommentModel>? comments}) = _$FeedModelImpl;
+      @HiveField(4) final String? userName,
+      @HiveField(5) final String? userEmail,
+      @HiveField(6) final String? userImage,
+      @HiveField(7) final String? feedImage,
+      @HiveField(8) final bool? isLike,
+      @HiveField(9) final List<CommentModel>? comments,
+      @HiveField(10) final int? likesCount,
+      @HiveField(11) final DateTime? postedDate}) = _$FeedModelImpl;
 
   factory _FeedModel.fromJson(Map<String, dynamic> json) =
       _$FeedModelImpl.fromJson;
@@ -330,16 +419,28 @@ abstract class _FeedModel implements FeedModel {
   int get userId;
   @override
   @HiveField(4)
-  String? get userImage;
+  String? get userName;
   @override
   @HiveField(5)
-  String? get feedImage;
+  String? get userEmail;
   @override
   @HiveField(6)
-  bool? get isLike;
+  String? get userImage;
   @override
   @HiveField(7)
+  String? get feedImage;
+  @override
+  @HiveField(8)
+  bool? get isLike;
+  @override
+  @HiveField(9)
   List<CommentModel>? get comments;
+  @override
+  @HiveField(10)
+  int? get likesCount;
+  @override
+  @HiveField(11)
+  DateTime? get postedDate;
 
   /// Create a copy of FeedModel
   /// with the given fields replaced by the non-null parameter values.

@@ -65,19 +65,20 @@ class _FeedRemoteDataSource implements FeedRemoteDataSource {
   }
 
   @override
-  Future<void> likePost(int postId) async {
+  Future<FeedModel> createPost(Map<String, dynamic> post) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<void>(Options(
+    final _data = <String, dynamic>{};
+    _data.addAll(post);
+    final _options = _setStreamType<FeedModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/posts/${postId}/like',
+          '/posts',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -86,51 +87,31 @@ class _FeedRemoteDataSource implements FeedRemoteDataSource {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    await _dio.fetch<void>(_options);
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late FeedModel _value;
+    try {
+      _value = FeedModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
-  Future<void> commentOnPost(
-    int postId,
-    CommentModel comment,
-  ) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = comment;
-    final _options = _setStreamType<void>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/posts/${postId}/comments',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    await _dio.fetch<void>(_options);
-  }
-
-  @override
-  Future<List<CommentModel>> getComments(int postId) async {
+  Future<UserModel> getUserDetails(int userId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<CommentModel>>(Options(
+    final _options = _setStreamType<UserModel>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/posts/${postId}/comments',
+          '/users/${userId}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -139,12 +120,10 @@ class _FeedRemoteDataSource implements FeedRemoteDataSource {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<CommentModel> _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late UserModel _value;
     try {
-      _value = _result.data!
-          .map((dynamic i) => CommentModel.fromJson(i as Map<String, dynamic>))
-          .toList();
+      _value = UserModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

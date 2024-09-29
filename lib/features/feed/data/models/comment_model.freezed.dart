@@ -20,9 +20,13 @@ CommentModel _$CommentModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CommentModel {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get name => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get body => throw _privateConstructorUsedError;
+  @HiveField(3)
   int get postId => throw _privateConstructorUsedError;
 
   /// Serializes this CommentModel to a JSON map.
@@ -41,7 +45,11 @@ abstract class $CommentModelCopyWith<$Res> {
           CommentModel value, $Res Function(CommentModel) then) =
       _$CommentModelCopyWithImpl<$Res, CommentModel>;
   @useResult
-  $Res call({int id, String name, String body, int postId});
+  $Res call(
+      {@HiveField(0) int id,
+      @HiveField(1) String name,
+      @HiveField(2) String body,
+      @HiveField(3) int postId});
 }
 
 /// @nodoc
@@ -93,7 +101,11 @@ abstract class _$$CommentModelImplCopyWith<$Res>
       __$$CommentModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String body, int postId});
+  $Res call(
+      {@HiveField(0) int id,
+      @HiveField(1) String name,
+      @HiveField(2) String body,
+      @HiveField(3) int postId});
 }
 
 /// @nodoc
@@ -139,21 +151,25 @@ class __$$CommentModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CommentModelImpl implements _CommentModel {
   const _$CommentModelImpl(
-      {required this.id,
-      required this.name,
-      required this.body,
-      required this.postId});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.name,
+      @HiveField(2) required this.body,
+      @HiveField(3) required this.postId});
 
   factory _$CommentModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CommentModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @HiveField(1)
   final String name;
   @override
+  @HiveField(2)
   final String body;
   @override
+  @HiveField(3)
   final int postId;
 
   @override
@@ -194,21 +210,25 @@ class _$CommentModelImpl implements _CommentModel {
 
 abstract class _CommentModel implements CommentModel {
   const factory _CommentModel(
-      {required final int id,
-      required final String name,
-      required final String body,
-      required final int postId}) = _$CommentModelImpl;
+      {@HiveField(0) required final int id,
+      @HiveField(1) required final String name,
+      @HiveField(2) required final String body,
+      @HiveField(3) required final int postId}) = _$CommentModelImpl;
 
   factory _CommentModel.fromJson(Map<String, dynamic> json) =
       _$CommentModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   int get id;
   @override
+  @HiveField(1)
   String get name;
   @override
+  @HiveField(2)
   String get body;
   @override
+  @HiveField(3)
   int get postId;
 
   /// Create a copy of CommentModel
