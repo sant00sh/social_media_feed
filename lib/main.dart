@@ -36,7 +36,10 @@ class MySocialApp extends StatelessWidget {
         title: StringConstants.appName,
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          brightness: Brightness.light, // Light theme
         ),
+        darkTheme: ThemeData.dark(), // Dark theme
+        themeMode: ThemeMode.system,
         home: const FeedPage(),
       ),
     );

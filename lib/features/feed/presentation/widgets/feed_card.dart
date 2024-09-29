@@ -162,7 +162,7 @@ class FeedCardState extends State<FeedCard>
                       : Icons.thumb_up_off_alt,
                   key: ValueKey<bool>(widget.post.isLike ?? false),
                   color:
-                      widget.post.isLike == true ? Colors.blue : Colors.black,
+                      widget.post.isLike == true ? Colors.blue : Colors.grey,
                 ),
               ),
             ),
